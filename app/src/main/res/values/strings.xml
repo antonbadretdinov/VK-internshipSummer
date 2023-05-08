@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Files</string>
     <string name="files_not_found">Files not found</string>
+    <string name="sort_by_name">Name</string>
+    <string name="sort_by_size_asc">Ascending</string>
+    <string name="sort_by_size_desc">Descending</string>
+    <string name="sort_by_type">Type</string>
+    <string name="sort_by_date">Date</string>
+    <string name="sort">SORT</string>
 </resources>

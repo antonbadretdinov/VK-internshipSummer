@@ -12,7 +12,7 @@ import java.io.File
 import java.util.*
 
 
-class FilesAdapter(private val filesAndFolders: Array<File>?, private val itemListener: ItemListener) :
+class FilesAdapter(private val filesAndFolders: List<File>?, private val itemListener: ItemListener) :
     RecyclerView.Adapter<FilesAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
