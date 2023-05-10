@@ -26,7 +26,7 @@ class LastChangesActivity : AppCompatActivity(), ItemListener {
 
         Toast.makeText(this,
             "Отображение файлов, которые были изменены с момента последнего запуска приложения, я не успел реализовать",
-            Toast.LENGTH_SHORT).show()
+            Toast.LENGTH_LONG).show()
         binding.changedFilesRecycler.layoutManager = LinearLayoutManager(this)
         val path = intent.getStringExtra("path")
         database = FileDatabase.getDb(this)

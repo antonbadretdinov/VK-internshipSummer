@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.vkinternshipsummer.databinding.ActivityMainBinding
-import com.example.vkinternshipsummer.room.FileDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,9 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val database = FileDatabase.getDb(this)
-
 
         if(checkPermission()){
             binding.progressBar.visibility = View.INVISIBLE
@@ -67,7 +63,8 @@ class MainActivity : AppCompatActivity() {
     private val storageActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             if (Environment.isExternalStorageManager()){
-                Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Permission granted, restart the application",
+                    Toast.LENGTH_LONG).show()
                 binding.progressBar.visibility = View.INVISIBLE
             }
             else{
@@ -76,7 +73,8 @@ class MainActivity : AppCompatActivity() {
         }else{
             if (ContextCompat.checkSelfPermission(this,
                     android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Permission granted, restart the application",
+                    Toast.LENGTH_LONG).show()
                 binding.progressBar.visibility = View.INVISIBLE
             }
             else{
