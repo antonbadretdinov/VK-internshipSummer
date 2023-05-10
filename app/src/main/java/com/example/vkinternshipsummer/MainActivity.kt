@@ -13,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.vkinternshipsummer.databinding.ActivityMainBinding
+import com.example.vkinternshipsummer.room.FileDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,11 +27,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val database = FileDatabase.getDb(this)
+
 
         if(checkPermission()){
             binding.progressBar.visibility = View.INVISIBLE
-            val fileScreenIntent = Intent(this, FileListActivity::class.java)
             val path = Environment.getExternalStorageDirectory().path
+            CoroutineScope(Dispatchers.Default).launch {
+                saveFilesToDatabase(this@MainActivity, path)
+            }
+            val fileScreenIntent = Intent(this, FileListActivity::class.java)
             fileScreenIntent.putExtra("path",path)
             startActivity(fileScreenIntent)
             finish()

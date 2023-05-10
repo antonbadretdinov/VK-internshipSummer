@@ -1,4 +1,4 @@
-package com.example.vkinternshipsummer
+package com.example.vkinternshipsummer.helpers
 
 import android.content.Context
 import android.content.Intent
@@ -13,7 +13,6 @@ class FileOpen {
             val intent = Intent(Intent.ACTION_VIEW)
             val uri = FileProvider.getUriForFile(context,
                 context.applicationContext.packageName + ".provider",file)
-            /*val uri = Uri.parse(file.absolutePath)*/
             try {
                 when (file.toString()) {
                     ".doc" -> intent.setDataAndType(uri, "application/msword")
@@ -40,12 +39,9 @@ class FileOpen {
                     else -> intent.setDataAndType(uri, "*/*")
                 }
                 intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                Log.e("tag",file.absolutePath)
-                Log.e("tag",file.path)
                 context.startActivity(intent)
             }catch (e: Exception){
                 Toast.makeText(context, "Failed to open file", Toast.LENGTH_SHORT).show()
-                Log.e("tag", e.toString())
             }
         }
     }

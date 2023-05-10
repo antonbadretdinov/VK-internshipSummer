@@ -38,7 +38,7 @@ class FilesAdapter(private val filesAndFolders: List<File>?, private val itemLis
                     tvFileSize.text = "${(file.length() / 1024)} Kb"
                 }
             }else{
-                tvFileSize.text = ""
+                tvFileSize.text = null
             }
             itemView.setOnClickListener {
                 itemListener.onItemClick(file)
